@@ -23,7 +23,7 @@ namespace Calculator
             Function = function;
         }
 
-        public float GetResult()
+        public double GetResult()
         {
             throw new NotImplementedException();
         }

@@ -8,6 +8,6 @@ namespace Calculator
 {
     public interface INode
     {
-        float GetResult();
+        double GetResult();
     }
 }
