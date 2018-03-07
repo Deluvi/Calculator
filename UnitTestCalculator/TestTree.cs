@@ -21,7 +21,7 @@ namespace UnitTestCalculator
         {
             double a = 5.0;
             double b = 3.5;
-            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.SUBSTRACTION);
 
             Assert.AreEqual(1.5, tree.GetResult(), 0.001, "Subtraction does not work.");
         }
@@ -30,7 +30,7 @@ namespace UnitTestCalculator
         {
             double a = 5.0;
             double b = 2.0;
-            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.MULTIPLICATION);
 
             Assert.AreEqual(10, tree.GetResult(), 0.001, "Multiply does not work.");
         }
@@ -39,13 +39,13 @@ namespace UnitTestCalculator
         {
             double a = 5.0;
             double b = 2.0;
-            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.DIVISION);
 
             Assert.AreEqual(2.5, tree.GetResult(), 0.001, "Division does not work.");
 
             b = 0.0;
 
-            tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+            tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.DIVISION);
 
             try
             {
