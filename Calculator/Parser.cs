@@ -8,7 +8,9 @@ namespace Calculator
 {
     public class Parser
     {
+        //List of Operations and Functions
         public static string[] ListOperations = new string[] { "+", "-", "*", "/" };
+        public static string[] ListFunctions = new string[] { "sin", "cos","hyp","cot" };
         public static string[] ListPrioritizedOperations = new string[] { "+", "-" }; 
         public static string[] Parantheses = new string[] { "(", ")" };
 
@@ -66,7 +68,9 @@ namespace Calculator
                 double value = Double.Parse(str);
                 return new NodeValue(value);
             }
+
             catch (FormatException) { }
+
             string operation = "";
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
@@ -83,6 +87,7 @@ namespace Calculator
                     operation = operationStr;
                 }
             }
+
             string operand1 = str.Substring(0, rank);
             string operand2 = str.Substring(rank + operation.Length);
             if (operation == "+")
@@ -101,6 +106,28 @@ namespace Calculator
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.DIVISION);
             }
+            //Functions implementation SIN
+            else if (str.Trim().StartsWith("sin(")&&str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.SINUS);
+            } // COSINE
+            else if (str.Trim().StartsWith("cos(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.COSINUS);
+            } // TANGENT
+            else if (str.Trim().StartsWith("tan(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.TANGENT);
+            } // COTANGENT
+            else if (str.Trim().StartsWith("cot(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.COTANGENT);
+            }
+
             else
             {
                 throw new NotImplementedException();
