@@ -23,6 +23,11 @@ namespace Calculator
             return line;
         }
 
- 
+        public void Save(string outputfile)
+        {
+            TextWriter outFile = new StreamWriter(outputfile);
+            outFile.WriteLine();  
+            outFile.Close();
+        }
     }
 }
