@@ -43,6 +43,8 @@ namespace UnitTestCalculator
 
             Assert.AreEqual(2.5, tree.GetResult(), 0.001, "Division does not work.");
 
+            /*
+                NaN values is a non-issue in C#.
             b = 0.0;
 
             tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.DIVISION);
@@ -53,6 +55,7 @@ namespace UnitTestCalculator
                 Assert.Fail("Division by zero can't happen.");
             }
             catch (DivideByZeroException) { }
+            */
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Calculator
 {
     public class Parser
     {
-        public INode ParseString(String str)
+        public static INode ParseString(String str)
         {
             throw new NotImplementedException();
         }
