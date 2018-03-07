@@ -74,8 +74,21 @@ namespace UnitTestCalculator
             double a = 20.0;
             double b = 5.0;
             INode tree = new NodeOperation(new NodeValue(a), new NodeOperation(new NodeValue(b), new NodeValue(b), OperationType.ADDITION), OperationType.SUBSTRACTION);
-
+            
             Assert.AreEqual(10, tree.GetResult(), 0.001, "Something went wrong.");
+        }
+
+        [TestMethod]
+        public void TestMultipleDiv()
+        {
+            double a = 100.0;
+            double b = 2.0;
+            double c = 5.0;
+            NodeOperation p1 = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.DIVISION);
+            NodeOperation p2 = new NodeOperation(new NodeValue(p1.GetResult()), new NodeValue(b), OperationType.DIVISION);
+            INode tree = new NodeOperation(new NodeValue(p2.GetResult()), new NodeValue(c), OperationType.DIVISION);
+
+            Assert.AreEqual(5.0, tree.GetResult(), 0.001, "Tripple add doesn't work");
         }
     }
 }
