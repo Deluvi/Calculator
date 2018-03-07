@@ -63,20 +63,19 @@ namespace UnitTestCalculator
         public void TestMultipleAdd()
         {
             double a = 5.0;
-            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(a), new NodeValue(a), new NodeValue(a), OperationType.ADDITION);            
+            INode tree = new NodeOperation(new NodeOperation(new NodeValue(a), new NodeValue(a), OperationType.ADDITION), new NodeOperation(new NodeValue(a), new NodeValue(a), OperationType.ADDITION), OperationType.ADDITION);     
 
-            Assert.AreEqual(20.0, res, 0.001, "Something went wrong.");
+            Assert.AreEqual(20.0, tree.GetResult(), 0.001, "Tripple add doesn't work");
         }
 
         [TestMethod]
-        public void TestMultipleAdd()
+        public void TestMultipleSub()
         {
-            double a = 5.0;
-            double b = 20.0;
-            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(a), new NodeValue(a), new NodeValue(a), OperationType.ADDITION);
-            INode p1 = new NodeOperation(new NodeValue(a), new NodeValue(a), OperationType.ADDITION);
+            double a = 20.0;
+            double b = 5.0;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeOperation(new NodeValue(b), new NodeValue(b), OperationType.ADDITION), OperationType.SUBSTRACTION);
 
-            Assert.AreEqual(20.0, res, 0.001, "Something went wrong.");
+            Assert.AreEqual(10, tree.GetResult(), 0.001, "Something went wrong.");
         }
     }
 }
