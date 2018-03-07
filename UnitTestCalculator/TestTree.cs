@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Calculator;
 
 namespace UnitTestCalculator
 {
@@ -10,31 +10,38 @@ namespace UnitTestCalculator
         [TestMethod]
         public void TestAdd()
         {
-            throw new NotImplementedException();
-
-            // arrange  
-            double beginningBalance = 11.99;
-
-            // act  
-            new
-
-            // assert  
-            Assert.AreEqual(expected, actual, 0.001, "Account not debited correctly");
+            double a = 5.0;
+            double b = 3.5;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+            
+            Assert.AreEqual(8.5, tree.GetResult(), 0.001, "Add does not work.");
         }
         [TestMethod]
         public void TestSub()
         {
-            throw new NotImplementedException();
+            double a = 5.0;
+            double b = 3.5;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+
+            Assert.AreEqual(1.5, tree.GetResult(), 0.001, "Subtraction does not work.");
         }
         [TestMethod]
         public void TestMul()
         {
-            throw new NotImplementedException();
+            double a = 5.0;
+            double b = 2.0;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+
+            Assert.AreEqual(10, tree.GetResult(), 0.001, "Multiply does not work.");
         }
         [TestMethod]
         public void TestDiv()
         {
-            throw new NotImplementedException();
+            double a = 5.0;
+            double b = 2.0;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+
+            Assert.AreEqual(2.5, tree.GetResult(), 0.001, "Division does not work.");
         }
     }
 }
