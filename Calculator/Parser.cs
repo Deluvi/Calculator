@@ -9,6 +9,7 @@ namespace Calculator
     public class Parser
     {
         public static string[] ListOperations = new string[] { "+", "-", "*", "/" };
+        public static string[] ListPrioritizedOperations = new string[] { "+", "-" };
 
         public static INode ParseString(String str)
         {
@@ -22,7 +23,9 @@ namespace Calculator
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
                 int newTestRank = str.IndexOf(operationStr);
-                if (newTestRank != -1 && newTestRank < rank)
+                if (newTestRank != -1 && 
+                    ((ListPrioritizedOperations.Contains(operationStr) && ! ListPrioritizedOperations.Contains(operation)) // If the new is prioritized and the old not
+                    || ((ListPrioritizedOperations.Contains(operationStr) == ListPrioritizedOperations.Contains(operation)) && newTestRank < rank)))
                 {
                     rank = newTestRank;
                     operation = operationStr;

@@ -39,5 +39,37 @@ namespace UnitTestCalculator
             double res = Parser.ParseString(parseString).GetResult();
             Assert.AreEqual(3, res, 0.001, "Division does not work.");
         }
+
+        [TestMethod]
+        public void TestParse2Add()
+        {
+            String parseString = "5+2+6";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(13, res, 0.001, "Multiple additions does not work.");
+        }
+
+        [TestMethod]
+        public void TestParseAddSub()
+        {
+            String parseString = "5+4-5";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(4, res, 0.001, "Multiple additions does not work.");
+        }
+
+        [TestMethod]
+        public void TestParsePriorityAddMul()
+        {
+            String parseString = "5+3*5";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(20, res, 0.001, "Multiple additions does not work.");
+
+            parseString = "3*5+5";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(20, res, 0.001, "Multiple additions does not work.");
+        }
     }
 }
