@@ -46,6 +46,7 @@
     <Compile Include="NodeFunction.cs" />
     <Compile Include="NodeOperation.cs" />
     <Compile Include="NodeValue.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
