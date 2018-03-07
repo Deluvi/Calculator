@@ -32,6 +32,7 @@ namespace Calculator
 
         public static INode ParseString(String str)
         {
+            str.Trim();
             try
             {
                 double value = Double.Parse(str);
@@ -42,6 +43,10 @@ namespace Calculator
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
                 int newTestRank = str.IndexOf(operationStr);
+                if (newTestRank == 0 && operationStr == "-")
+                {
+                    newTestRank = str.IndexOf(operationStr, 1);
+                }
                 if (newTestRank != -1 && 
                     ((ListPrioritizedOperations.Contains(operationStr) && ! ListPrioritizedOperations.Contains(operation)) // If the new is prioritized and the old not
                     || ((ListPrioritizedOperations.Contains(operationStr) == ListPrioritizedOperations.Contains(operation)) && newTestRank < rank)))

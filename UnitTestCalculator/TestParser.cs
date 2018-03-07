@@ -73,6 +73,15 @@ namespace UnitTestCalculator
         }
 
         [TestMethod]
+        public void TestNegativeNumber()
+        {
+            String parseString = "-2*8";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(-16, res, 0.001, "Parantheses does not work.");
+        }
+
+        [TestMethod]
         public void TestParantheses()
         {
             String parseString = "(5+3)*5";
