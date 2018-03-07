@@ -21,6 +21,7 @@ namespace Calculator
                 }
                 catch (Exception e) {
                     Console.WriteLine("Input invalid!");
+                    Console.WriteLine(e.Message);
                 }
             }
         }
