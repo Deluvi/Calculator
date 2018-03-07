@@ -48,12 +48,29 @@ namespace Calculator
                 }
                 if (posOpenParenthesis != -1 && posClosedParenthesis != -1)
                 {
-                    String toParse = String.Copy(resultString).Substring(posOpenParenthesis, posClosedParenthesis - posOpenParenthesis+1);
-                    double result = ParseString(toParse.Substring(1,toParse.Length - 2)).GetResult();
-                    resultString = resultString.Replace(toParse, result.ToString());
+                    bool isFunc = false;
+
+                    foreach(String function in ListFunctions)
+                    {
+                        if (posOpenParenthesis - function.Length >= 0)
+                        {
+                            if (resultString.Substring(posOpenParenthesis - function.Length, function.Length) == function)
+                            {
+                                isFunc = true;
+                            }
+                            
+                        }
+                    }
+                    if (!isFunc)
+                    {
+                        String toParse = String.Copy(resultString).Substring(posOpenParenthesis, posClosedParenthesis - posOpenParenthesis + 1);
+                        double result = ParseString(toParse.Substring(1, toParse.Length - 2)).GetResult();
+                        resultString = resultString.Replace(toParse, result.ToString());
+                    }
 
                     posOpenParenthesis = -1;
                     posClosedParenthesis = -1;
+
                 }
             }
             return resultString;
