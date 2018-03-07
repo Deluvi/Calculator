@@ -36,6 +36,14 @@ namespace Calculator
             {
                 return LeftOperand.GetResult() - RightOperand.GetResult();
             }
+            else if (Operation == OperationType.MULTIPLICATION)
+            {
+                return LeftOperand.GetResult() * RightOperand.GetResult();
+            }
+            else if (Operation == OperationType.DIVISION)
+            {
+                return LeftOperand.GetResult() / RightOperand.GetResult();
+            }
             else throw new NotImplementedException();
         }
     }
