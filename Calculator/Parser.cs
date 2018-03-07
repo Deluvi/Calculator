@@ -23,37 +23,6 @@ namespace Calculator
 
             catch (FormatException) { }
 
-            //Functions implementation
-            if (str.Trim().StartsWith("sin("))
-            {
-                int lastLocation = str.IndexOf(")");
-
-                if (lastLocation >= 0)
-                {
-                    str = str.Substring(lastLocation + 1);
-                }
-
-                string operand = str.Substring(4);
-                Console.WriteLine("sin 3: " + operand);
-                return new NodeFunction(ParseString(operand), FunctionType.SINUS);
-            }
-
-            else if (str.Trim().StartsWith("cos("))
-            {
-                string operand = str.Substring(4);
-                return new NodeFunction(ParseString(operand), FunctionType.COSINUS);
-            }
-            else if (str.Trim().StartsWith("tan("))
-            {
-                string operand = str.Substring(4);
-                return new NodeFunction(ParseString(operand), FunctionType.TANGENT);
-            }
-            else if (str.Trim().StartsWith("cot("))
-            {
-                string operand = str.Substring(4);
-                return new NodeFunction(ParseString(operand), FunctionType.COTANGENT);
-            }
-
             string operation = "";
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
@@ -84,6 +53,13 @@ namespace Calculator
             else if (operation == "/")
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.DIVISION);
+            }
+            //Functions implementation
+            else if (str.Trim().StartsWith("sin(")&&str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                Console.WriteLine("sin: " + operand);
+                return new NodeFunction(ParseString(operand), FunctionType.SINUS);
             }
 
             else
