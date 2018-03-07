@@ -9,7 +9,7 @@ namespace Calculator
     public class Parser
     {
         public static string[] ListOperations = new string[] { "+", "-", "*", "/" };
-        public static string[] ListPrioritizedOperations = new string[] { "+", "-" };
+        public static string[] ListPrioritizedOperations = new string[] { "+", "-" }; 
         public static string[] Parantheses = new string[] { "(", ")" };
 
         public static String ParanthesisProcessor(String str)
