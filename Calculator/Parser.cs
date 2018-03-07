@@ -54,12 +54,26 @@ namespace Calculator
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.DIVISION);
             }
-            //Functions implementation
+            //Functions implementation SIN
             else if (str.Trim().StartsWith("sin(")&&str.Trim().EndsWith(")"))
             {
                 string operand = str.Substring(4).TrimEnd(')');
-                Console.WriteLine("sin: " + operand);
                 return new NodeFunction(ParseString(operand), FunctionType.SINUS);
+            } // COSINE
+            else if (str.Trim().StartsWith("cos(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.COSINUS);
+            } // TANGENT
+            else if (str.Trim().StartsWith("tan(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.TANGENT);
+            } // COTANGENT
+            else if (str.Trim().StartsWith("cot(") && str.Trim().EndsWith(")"))
+            {
+                string operand = str.Substring(4).TrimEnd(')');
+                return new NodeFunction(ParseString(operand), FunctionType.COTANGENT);
             }
 
             else
