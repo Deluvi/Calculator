@@ -39,5 +39,9 @@ namespace UnitTestCalculator
             double res = Parser.ParseString(parseString).GetResult();
             Assert.AreEqual(3, res, 0.001, "Division does not work.");
         }
+
+        
+
+
     }
 }

@@ -57,5 +57,26 @@ namespace UnitTestCalculator
             catch (DivideByZeroException) { }
             */
         }
+
+        //Multiple operations tests
+        [TestMethod]
+        public void TestMultipleAdd()
+        {
+            double a = 5.0;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(a), new NodeValue(a), new NodeValue(a), OperationType.ADDITION);            
+
+            Assert.AreEqual(20.0, res, 0.001, "Something went wrong.");
+        }
+
+        [TestMethod]
+        public void TestMultipleAdd()
+        {
+            double a = 5.0;
+            double b = 20.0;
+            INode tree = new NodeOperation(new NodeValue(a), new NodeValue(a), new NodeValue(a), new NodeValue(a), OperationType.ADDITION);
+            INode p1 = new NodeOperation(new NodeValue(a), new NodeValue(a), OperationType.ADDITION);
+
+            Assert.AreEqual(20.0, res, 0.001, "Something went wrong.");
+        }
     }
 }
