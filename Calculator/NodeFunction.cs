@@ -10,7 +10,8 @@ namespace Calculator
     {
         SINUS,
         COSINUS,
-        TANGENT
+        TANGENT,
+        COTANGENT
     }
     public class NodeFunction : INode
     {
@@ -25,7 +26,23 @@ namespace Calculator
 
         public double GetResult()
         {
-            throw new NotImplementedException();
+            if (Function == FunctionType.SINUS)
+            {
+                return Math.Sin(Operand.GetResult());
+            }
+            else if (Function == FunctionType.COSINUS)
+            {
+                return Math.Cos(Operand.GetResult());
+            }
+            else if (Function == FunctionType.TANGENT)
+            {
+                return Math.Tan(Operand.GetResult());
+            }
+            else if (Function == FunctionType.COTANGENT)
+            {
+                return (1/(Math.Tan(Operand.GetResult())));
+            }
+            else throw new NotImplementedException();
         }
     }
 }
