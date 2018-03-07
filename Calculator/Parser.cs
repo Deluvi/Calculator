@@ -12,8 +12,8 @@ namespace Calculator
         public static string[] ListPrioritizedOperations = new string[] { "+", "-" }; 
         public static string[] Parantheses = new string[] { "(", ")" };
 
-        public static String ParanthesisProcessor(String str)
-        {
+       public static String ParanthesisProcessor(String str)
+        {/*
             List<int> positions = new List<int>();
             int pos = 0;
             while ((pos < str.Length) && (pos = str.IndexOf("(", pos)) != -1)
@@ -27,7 +27,8 @@ namespace Calculator
             {
                 Console.WriteLine(p);
             }
-            return "hello";
+            return "hello";*/
+
         }
 
         public static INode ParseString(String str)
@@ -80,3 +81,24 @@ namespace Calculator
         }
     }
 }
+
+/*
+ * Just for fun
+   List<int> positions = new List<int>();
+            int pos = 0;
+            int count = 0;
+            while ((pos < str.Length) && (pos = str.IndexOf("(", pos)) != -1)
+            {
+                if(count == 0)
+                    positions.Add(pos);
+                count++;
+            }
+            while ((pos < str.Length) && (pos = str.IndexOf(")", pos)) != -1)
+            {
+                count--;
+                if (count == 0)
+                    positions.Add(pos);
+            }
+
+            String paranth = str.Substring(positions[0]+1, positions[1]-1);
+*/
