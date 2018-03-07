@@ -108,7 +108,7 @@ namespace UnitTestCalculator
             double a = 45;
             INode tree = new NodeFunction(new NodeValue(a), FunctionType.COTANGENT);
             Assert.AreEqual(1, tree.GetResult(), 0.001, "Cotangent does not work.");
-
+        }
         public void TestMultipleDiv()
         {
             double a = 100.0;
