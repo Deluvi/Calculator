@@ -14,25 +14,53 @@ namespace Calculator
 
         public static String ParanthesisProcessor(String str)
         {
-            List<int> positions = new List<int>();
-            int pos = 0;
-            while ((pos < str.Length) && (pos = str.IndexOf("(", pos)) != -1)
+            String resultString = String.Copy(str);
+            int posOpenParenthesis = -1;
+            int posClosedParenthesis = -1;
+            int score = -1;
+            for (int i = resultString.Length - 1; i >= 0; i--)
             {
-                positions.Add(pos);
-                pos++;
-            }
+                if (resultString[i] == ')')
+                {
+                    if (score == -1)
+                    {
+                        score = 1;
+                        posClosedParenthesis = i;
+                    }
+                    else
+                    {
+                        score++;
+                    }                   
+                }
+                if (resultString[i] == '(')
+                {
+                    if (score == 1)
+                    {
+                        posOpenParenthesis = i;
+                        score = -1;
+                    }
+                    else
+                    {
+                        score--;
+                    }
+                }
+                if (posOpenParenthesis != -1 && posClosedParenthesis != -1)
+                {
+                    String toParse = String.Copy(resultString).Substring(posOpenParenthesis, posClosedParenthesis - posOpenParenthesis+1);
+                    double result = ParseString(toParse.Substring(1,toParse.Length - 2)).GetResult();
+                    resultString = resultString.Replace(toParse, result.ToString());
 
-            Console.WriteLine("{0} occurrences", positions.Count);
-            foreach (var p in positions)
-            {
-                Console.WriteLine(p);
+                    posOpenParenthesis = -1;
+                    posClosedParenthesis = -1;
+                }
             }
-            return "hello";
+            return resultString;
         }
 
         public static INode ParseString(String str)
         {
             str.Trim();
+            str = ParanthesisProcessor(str);
             try
             {
                 double value = Double.Parse(str);
