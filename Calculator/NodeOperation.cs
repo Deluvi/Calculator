@@ -19,6 +19,13 @@ namespace Calculator
         INode RightOperand;
         OperationType Operation;
 
+        public NodeOperation(INode leftOperand, INode rightOperand, OperationType operation)
+        {
+            LeftOperand = leftOperand;
+            RightOperand = rightOperand;
+            Operation = operation;
+        }
+
         public float GetResult()
         {
             throw new NotImplementedException();

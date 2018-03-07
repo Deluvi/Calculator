@@ -17,6 +17,12 @@ namespace Calculator
         INode Operand;
         FunctionType Function;
 
+        public NodeFunction(INode operand, FunctionType function)
+        {
+            Operand = operand;
+            Function = function;
+        }
+
         public float GetResult()
         {
             throw new NotImplementedException();
