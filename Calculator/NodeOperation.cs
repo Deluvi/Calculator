@@ -28,7 +28,15 @@ namespace Calculator
 
         public float GetResult()
         {
-            throw new NotImplementedException();
+            if (Operation == OperationType.ADDITION)
+            {
+                return LeftOperand.GetResult() + RightOperand.GetResult();
+            }
+            else if (Operation == OperationType.SUBSTRACTION)
+            {
+                return LeftOperand.GetResult() - RightOperand.GetResult();
+            }
+            else throw new NotImplementedException();
         }
     }
 }
