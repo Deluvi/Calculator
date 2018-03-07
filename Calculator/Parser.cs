@@ -10,6 +10,25 @@ namespace Calculator
     {
         public static string[] ListOperations = new string[] { "+", "-", "*", "/" };
         public static string[] ListPrioritizedOperations = new string[] { "+", "-" };
+        public static string[] Parantheses = new string[] { "(", ")" };
+
+        public static String ParanthesisProcessor(String str)
+        {
+            List<int> positions = new List<int>();
+            int pos = 0;
+            while ((pos < str.Length) && (pos = str.IndexOf("(", pos)) != -1)
+            {
+                positions.Add(pos);
+                pos++;
+            }
+
+            Console.WriteLine("{0} occurrences", positions.Count);
+            foreach (var p in positions)
+            {
+                Console.WriteLine(p);
+            }
+            return "hello";
+        }
 
         public static INode ParseString(String str)
         {
