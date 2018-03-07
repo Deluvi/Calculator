@@ -26,7 +26,7 @@ namespace Calculator
             Operation = operation;
         }
 
-        public float GetResult()
+        public double GetResult()
         {
             if (Operation == OperationType.ADDITION)
             {
