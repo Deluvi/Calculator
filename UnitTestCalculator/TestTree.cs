@@ -42,6 +42,17 @@ namespace UnitTestCalculator
             INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
 
             Assert.AreEqual(2.5, tree.GetResult(), 0.001, "Division does not work.");
+
+            b = 0.0;
+
+            tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.ADDITION);
+
+            try
+            {
+                tree.GetResult();
+                Assert.Fail("Division by zero can't happen.");
+            }
+            catch (DivideByZeroException) { }
         }
     }
 }
