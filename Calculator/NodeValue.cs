@@ -8,13 +8,13 @@ namespace Calculator
 {
     public class NodeValue : INode
     {
-        float Value;
+        double Value;
 
-        public NodeValue(float value)
+        public NodeValue(double value)
         {
             Value = value;
         }
-        public float GetResult()
+        public double GetResult()
         {
             return Value;
         }

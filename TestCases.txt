@@ -1,0 +1,21 @@
+﻿Single operation test:
+1. 5+6=?	equals(add(5,6),11)
+2. 6-3=?     	equals(sub(6,3),3)
+3. 5*5=?	equals(mul(5,5),25)     	
+4. 5*0=?	equals(mul(5,0),0)
+5. 10/5		equals(div(10,5),2)
+6. 10/0		equals(div(10,0),exeption)
+7. 0/5		equals(div(0,5),0)
+
+Testing the parser:
+1. equals(add(5,add(5,5)),15)    5+5+5=15
+2. equals(mul(5,mul(5,0)),0)     5*5*0=0
+3. equals(div(10,div(8,4)),5)	10/5/2=1  	
+4. equals(mul(5,mul("string",0)), "invalid input")	
+5. equals(mul(5,mul(5,0)),0)
+6. equals(add(5,-6),"invalid input")
+7. equals(mul(5,"/6"),"invalid input") 5*/6 
+8. equals(add(5,6),11)
+9. "+5+9", "invalid input"
+
+
