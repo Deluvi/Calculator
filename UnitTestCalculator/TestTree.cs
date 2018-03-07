@@ -77,5 +77,37 @@ namespace UnitTestCalculator
 
             Assert.AreEqual(10, tree.GetResult(), 0.001, "Something went wrong.");
         }
+
+        [TestMethod]
+        public void TestSin()
+        {
+            double a = 90;
+            INode tree = new NodeFunction(new NodeValue(a), FunctionType.SINUS);
+            Assert.AreEqual(1, tree.GetResult(), 0.001, "Sine does not work.");
+        }
+
+        [TestMethod]
+        public void TestCos()
+        {
+            double a = 90;
+            INode tree = new NodeFunction(new NodeValue(a), FunctionType.COSINUS);
+            Assert.AreEqual(0, tree.GetResult(), 0.001, "Cosine does not work.");
+        }
+
+        [TestMethod]
+        public void TestTan()
+        {
+            double a = 45;
+            INode tree = new NodeFunction(new NodeValue(a), FunctionType.TANGENT);
+            Assert.AreEqual(1, tree.GetResult(), 0.001, "Sine does not work.");
+        }
+
+        [TestMethod]
+        public void TestCot()
+        {
+            double a = 45;
+            INode tree = new NodeFunction(new NodeValue(a), FunctionType.COTANGENT);
+            Assert.AreEqual(1, tree.GetResult(), 0.001, "Cotangent does not work.");
+        }
     }
 }
