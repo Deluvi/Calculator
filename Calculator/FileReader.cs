@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    class FileReader
+    public class FileReader
     {
         public string Read()
         {
             Console.Write("Enter a valid path: ");
             String path = Console.ReadLine();
+           
             //open input for reading
             TextReader inFile = new StreamReader(path);
 
             //reads the lines from the file
-            string line;
-            line = inFile.ReadLine();
-            Console.WriteLine(line);
+            string line = inFile.ReadLine();
+
             //Closes and return the result
             inFile.Close();
             return line;
@@ -31,15 +31,14 @@ namespace Calculator
             TextReader inFile = new StreamReader(inputfile);
 
             //reads the lines from the file
-            string line;
-            line = inFile.ReadLine();
-            Console.WriteLine(line);
+            string line = inFile.ReadLine();
+            
             //Closes and return the result
             inFile.Close();
             return line;
         }
 
-        public void Save(string outputfile, string outputText)
+        public int Save(string outputfile, string outputText)
         {
             //Create writer 
             TextWriter outFile = new StreamWriter(outputfile);
@@ -49,6 +48,7 @@ namespace Calculator
            
             //Closes the file
             outFile.Close();
+            return 1;
         }
     }
 }

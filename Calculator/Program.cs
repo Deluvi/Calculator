@@ -11,17 +11,6 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            FileReader fr = new FileReader();
-
-            try
-            {
-                fr.Read();
-                fr.Save("hello.txt", "Fierro pariente");
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine("Please enter a valid route.");
-            }
 
             while (true)
             {
