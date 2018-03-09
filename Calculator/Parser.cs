@@ -92,9 +92,12 @@ namespace Calculator
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
                 int newTestRank = str.IndexOf(operationStr);
-                if (newTestRank == 0 && operationStr == "-")
+                if (operationStr == "-")
                 {
-                    newTestRank = str.IndexOf(operationStr, 1);
+                    while (newTestRank != -1 && (newTestRank == 0 || ListOperations.Contains(str[newTestRank - 1].ToString()) || str[newTestRank - 1] == '('))
+                    {
+                        newTestRank = str.IndexOf(operationStr, newTestRank + 1);
+                    }
                 }
                 if (newTestRank != -1 && 
                     ((ListPrioritizedOperations.Contains(operationStr) && ! ListPrioritizedOperations.Contains(operation)) // If the new is prioritized and the old not
