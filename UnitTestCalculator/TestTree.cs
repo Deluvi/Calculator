@@ -194,7 +194,7 @@ namespace UnitTestCalculator
             double b = 2;
 
             INode tree = new NodeOperation(new NodeValue(a), new NodeValue(b), OperationType.POWER);
-            Assert.AreEqual(5.0, tree.GetResult(), 0.001, "Multiple addition + division with zero doesn't work");
+            Assert.AreEqual(5.0, tree.GetResult(), 0.001, "Power does not work");
         }
 
     }
