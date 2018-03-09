@@ -93,6 +93,54 @@ namespace UnitTestCalculator
 
             res = Parser.ParseString(parseString).GetResult();
             Assert.AreEqual(30, res, 0.001, "Parantheses does not work.");
+
+            parseString = "5-5*(2/2)";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(0, res, 0.001, "Parantheses does not work.");
+
+            parseString = "(2+3)/5";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(1, res, 0.001, "Parantheses does not work.");
+
+            parseString = "1+2*3+(1+3)/2";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(9, res, 0.001, "Parantheses does not work.");
+
+            parseString = "5+(4*(-1))";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(1, res, 0.001, "Parantheses does not work.");
+
+            parseString = "0+((-4)*(-3))*(-2)";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(-24, res, 0.001, "Parantheses does not work.");
+
+            parseString = "(2+3)*2*(1-(-1))";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(20, res, 0.001, "Parantheses does not work.");
+        }
+        [TestMethod]
+        public void TestPower()
+        {
+            String parseString = "5^2";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(25, res, 0.001, "Power does not work.");
+
+            parseString = "(1+2)^2";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(9, res, 0.001, "Power does not work.");
+
+            parseString = "1+2^6*2";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(129, res, 0.001, "Power does not work.");
         }
     }
 }
