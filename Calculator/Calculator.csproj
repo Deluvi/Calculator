@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileReader.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="NodeFunction.cs" />
     <Compile Include="NodeOperation.cs" />

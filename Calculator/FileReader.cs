@@ -9,7 +9,23 @@ namespace Calculator
 {
     class FileReader
     {
-       public string Read(string inputfile)
+        public string Read()
+        {
+            Console.Write("Enter a valid path: ");
+            String path = Console.ReadLine();
+            //open input for reading
+            TextReader inFile = new StreamReader(path);
+
+            //reads the lines from the file
+            string line;
+            line = inFile.ReadLine();
+            Console.WriteLine(line);
+            //Closes and return the result
+            inFile.Close();
+            return line;
+        }
+
+        public string Read(string inputfile)
         {
             //open input for reading
             TextReader inFile = new StreamReader(inputfile);
