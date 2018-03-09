@@ -47,8 +47,8 @@
             this.DelBtn = new System.Windows.Forms.Button();
             this.InputBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.FacBtn = new System.Windows.Forms.Button();
-            this.SignBtn = new System.Windows.Forms.Button();
+            this.LastRes = new System.Windows.Forms.Button();
+            this.powButton = new System.Windows.Forms.Button();
             this.OpenPBtn = new System.Windows.Forms.Button();
             this.ClosedPButton = new System.Windows.Forms.Button();
             this.DelAllBtn = new System.Windows.Forms.Button();
@@ -57,19 +57,19 @@
             this.TanBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CtgBtn = new System.Windows.Forms.Button();
-            this.powButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.labelX = new System.Windows.Forms.Label();
-            this.labelY = new System.Windows.Forms.Label();
-            this.labelZ = new System.Windows.Forms.Label();
-            this.labelW = new System.Windows.Forms.Label();
-            this.labelV = new System.Windows.Forms.Label();
-            this.xValue = new System.Windows.Forms.TextBox();
-            this.yValue = new System.Windows.Forms.TextBox();
-            this.zValue = new System.Windows.Forms.TextBox();
-            this.wValue = new System.Windows.Forms.TextBox();
             this.vValue = new System.Windows.Forms.TextBox();
-            this.LastRes = new System.Windows.Forms.Button();
+            this.wValue = new System.Windows.Forms.TextBox();
+            this.zValue = new System.Windows.Forms.TextBox();
+            this.yValue = new System.Windows.Forms.TextBox();
+            this.xValue = new System.Windows.Forms.TextBox();
+            this.labelV = new System.Windows.Forms.Label();
+            this.labelW = new System.Windows.Forms.Label();
+            this.labelZ = new System.Windows.Forms.Label();
+            this.labelY = new System.Windows.Forms.Label();
+            this.labelX = new System.Windows.Forms.Label();
+            this.ReadFile = new System.Windows.Forms.Button();
+            this.OutputFile = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -249,17 +249,15 @@
             // 
             this.InputBox.Location = new System.Drawing.Point(12, 12);
             this.InputBox.Name = "InputBox";
+            this.InputBox.ReadOnly = true;
             this.InputBox.Size = new System.Drawing.Size(190, 20);
             this.InputBox.TabIndex = 17;
-            this.InputBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputBox_KeyPress);
-            this.InputBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InputKeyUp);
+            this.InputBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputBox_KeyPress_1);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.LastRes);
             this.groupBox2.Controls.Add(this.powButton);
-            this.groupBox2.Controls.Add(this.FacBtn);
-            this.groupBox2.Controls.Add(this.SignBtn);
             this.groupBox2.Controls.Add(this.OpenPBtn);
             this.groupBox2.Controls.Add(this.ClosedPButton);
             this.groupBox2.Controls.Add(this.DelAllBtn);
@@ -286,28 +284,29 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             // 
-            // FacBtn
+            // LastRes
             // 
-            this.FacBtn.Location = new System.Drawing.Point(15, 77);
-            this.FacBtn.Name = "FacBtn";
-            this.FacBtn.Size = new System.Drawing.Size(29, 23);
-            this.FacBtn.TabIndex = 21;
-            this.FacBtn.Text = "n!";
-            this.FacBtn.UseVisualStyleBackColor = true;
-            this.FacBtn.Click += new System.EventHandler(this.NumButtonEvent);
+            this.LastRes.Location = new System.Drawing.Point(6, 20);
+            this.LastRes.Name = "LastRes";
+            this.LastRes.Size = new System.Drawing.Size(38, 109);
+            this.LastRes.TabIndex = 23;
+            this.LastRes.Text = "Last Result";
+            this.LastRes.UseVisualStyleBackColor = true;
+            this.LastRes.Click += new System.EventHandler(this.LastRes_Click);
             // 
-            // SignBtn
+            // powButton
             // 
-            this.SignBtn.Location = new System.Drawing.Point(15, 106);
-            this.SignBtn.Name = "SignBtn";
-            this.SignBtn.Size = new System.Drawing.Size(29, 23);
-            this.SignBtn.TabIndex = 20;
-            this.SignBtn.Text = "+/-";
-            this.SignBtn.UseVisualStyleBackColor = true;
+            this.powButton.Location = new System.Drawing.Point(50, 20);
+            this.powButton.Name = "powButton";
+            this.powButton.Size = new System.Drawing.Size(29, 23);
+            this.powButton.TabIndex = 22;
+            this.powButton.Text = "^";
+            this.powButton.UseVisualStyleBackColor = true;
+            this.powButton.Click += new System.EventHandler(this.NumButtonEvent);
             // 
             // OpenPBtn
             // 
-            this.OpenPBtn.Location = new System.Drawing.Point(15, 135);
+            this.OpenPBtn.Location = new System.Drawing.Point(12, 135);
             this.OpenPBtn.Name = "OpenPBtn";
             this.OpenPBtn.Size = new System.Drawing.Size(29, 23);
             this.OpenPBtn.TabIndex = 19;
@@ -387,15 +386,6 @@
             this.CtgBtn.UseVisualStyleBackColor = true;
             this.CtgBtn.Click += new System.EventHandler(this.TrigonometicFunctions);
             // 
-            // powButton
-            // 
-            this.powButton.Location = new System.Drawing.Point(15, 48);
-            this.powButton.Name = "powButton";
-            this.powButton.Size = new System.Drawing.Size(29, 23);
-            this.powButton.TabIndex = 22;
-            this.powButton.Text = "^";
-            this.powButton.UseVisualStyleBackColor = true;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.vValue);
@@ -410,90 +400,9 @@
             this.groupBox3.Controls.Add(this.labelX);
             this.groupBox3.Location = new System.Drawing.Point(208, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(119, 253);
+            this.groupBox3.Size = new System.Drawing.Size(119, 192);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
-            // 
-            // labelX
-            // 
-            this.labelX.AutoSize = true;
-            this.labelX.Location = new System.Drawing.Point(7, 20);
-            this.labelX.Name = "labelX";
-            this.labelX.Size = new System.Drawing.Size(15, 13);
-            this.labelX.TabIndex = 0;
-            this.labelX.Text = "x:";
-            // 
-            // labelY
-            // 
-            this.labelY.AutoSize = true;
-            this.labelY.Location = new System.Drawing.Point(7, 50);
-            this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(15, 13);
-            this.labelY.TabIndex = 1;
-            this.labelY.Text = "y:";
-            // 
-            // labelZ
-            // 
-            this.labelZ.AutoSize = true;
-            this.labelZ.Location = new System.Drawing.Point(6, 84);
-            this.labelZ.Name = "labelZ";
-            this.labelZ.Size = new System.Drawing.Size(15, 13);
-            this.labelZ.TabIndex = 2;
-            this.labelZ.Text = "z:";
-            // 
-            // labelW
-            // 
-            this.labelW.AutoSize = true;
-            this.labelW.Location = new System.Drawing.Point(6, 113);
-            this.labelW.Name = "labelW";
-            this.labelW.Size = new System.Drawing.Size(18, 13);
-            this.labelW.TabIndex = 3;
-            this.labelW.Text = "w:";
-            // 
-            // labelV
-            // 
-            this.labelV.AutoSize = true;
-            this.labelV.Location = new System.Drawing.Point(6, 142);
-            this.labelV.Name = "labelV";
-            this.labelV.Size = new System.Drawing.Size(16, 13);
-            this.labelV.TabIndex = 4;
-            this.labelV.Text = "v:";
-            // 
-            // xValue
-            // 
-            this.xValue.Location = new System.Drawing.Point(29, 17);
-            this.xValue.Name = "xValue";
-            this.xValue.Size = new System.Drawing.Size(84, 20);
-            this.xValue.TabIndex = 5;
-            this.xValue.Text = "0";
-            this.xValue.TextChanged += new System.EventHandler(this.xValue_TextChanged);
-            // 
-            // yValue
-            // 
-            this.yValue.Location = new System.Drawing.Point(28, 48);
-            this.yValue.Name = "yValue";
-            this.yValue.Size = new System.Drawing.Size(84, 20);
-            this.yValue.TabIndex = 6;
-            this.yValue.Text = "0";
-            this.yValue.TextChanged += new System.EventHandler(this.yValue_TextChanged);
-            // 
-            // zValue
-            // 
-            this.zValue.Location = new System.Drawing.Point(28, 84);
-            this.zValue.Name = "zValue";
-            this.zValue.Size = new System.Drawing.Size(84, 20);
-            this.zValue.TabIndex = 7;
-            this.zValue.Text = "0";
-            this.zValue.TextChanged += new System.EventHandler(this.zValue_TextChanged);
-            // 
-            // wValue
-            // 
-            this.wValue.Location = new System.Drawing.Point(29, 113);
-            this.wValue.Name = "wValue";
-            this.wValue.Size = new System.Drawing.Size(84, 20);
-            this.wValue.TabIndex = 8;
-            this.wValue.Text = "0";
-            this.wValue.TextChanged += new System.EventHandler(this.wValue_TextChanged);
             // 
             // vValue
             // 
@@ -504,28 +413,121 @@
             this.vValue.Text = "0";
             this.vValue.TextChanged += new System.EventHandler(this.vValue_TextChanged);
             // 
-            // LastRes
+            // wValue
             // 
-            this.LastRes.Location = new System.Drawing.Point(15, 20);
-            this.LastRes.Name = "LastRes";
-            this.LastRes.Size = new System.Drawing.Size(64, 23);
-            this.LastRes.TabIndex = 23;
-            this.LastRes.Text = "Last Result";
-            this.LastRes.UseVisualStyleBackColor = true;
-            this.LastRes.Click += new System.EventHandler(this.LastRes_Click);
+            this.wValue.Location = new System.Drawing.Point(29, 113);
+            this.wValue.Name = "wValue";
+            this.wValue.Size = new System.Drawing.Size(84, 20);
+            this.wValue.TabIndex = 8;
+            this.wValue.Text = "0";
+            this.wValue.TextChanged += new System.EventHandler(this.wValue_TextChanged);
+            // 
+            // zValue
+            // 
+            this.zValue.Location = new System.Drawing.Point(28, 84);
+            this.zValue.Name = "zValue";
+            this.zValue.Size = new System.Drawing.Size(84, 20);
+            this.zValue.TabIndex = 7;
+            this.zValue.Text = "0";
+            this.zValue.TextChanged += new System.EventHandler(this.zValue_TextChanged);
+            // 
+            // yValue
+            // 
+            this.yValue.Location = new System.Drawing.Point(28, 48);
+            this.yValue.Name = "yValue";
+            this.yValue.Size = new System.Drawing.Size(84, 20);
+            this.yValue.TabIndex = 6;
+            this.yValue.Text = "0";
+            this.yValue.TextChanged += new System.EventHandler(this.yValue_TextChanged);
+            // 
+            // xValue
+            // 
+            this.xValue.Location = new System.Drawing.Point(29, 17);
+            this.xValue.Name = "xValue";
+            this.xValue.Size = new System.Drawing.Size(84, 20);
+            this.xValue.TabIndex = 5;
+            this.xValue.Text = "0";
+            this.xValue.TextChanged += new System.EventHandler(this.xValue_TextChanged);
+            // 
+            // labelV
+            // 
+            this.labelV.AutoSize = true;
+            this.labelV.Location = new System.Drawing.Point(6, 142);
+            this.labelV.Name = "labelV";
+            this.labelV.Size = new System.Drawing.Size(16, 13);
+            this.labelV.TabIndex = 4;
+            this.labelV.Text = "v:";
+            // 
+            // labelW
+            // 
+            this.labelW.AutoSize = true;
+            this.labelW.Location = new System.Drawing.Point(6, 113);
+            this.labelW.Name = "labelW";
+            this.labelW.Size = new System.Drawing.Size(18, 13);
+            this.labelW.TabIndex = 3;
+            this.labelW.Text = "w:";
+            // 
+            // labelZ
+            // 
+            this.labelZ.AutoSize = true;
+            this.labelZ.Location = new System.Drawing.Point(6, 84);
+            this.labelZ.Name = "labelZ";
+            this.labelZ.Size = new System.Drawing.Size(15, 13);
+            this.labelZ.TabIndex = 2;
+            this.labelZ.Text = "z:";
+            // 
+            // labelY
+            // 
+            this.labelY.AutoSize = true;
+            this.labelY.Location = new System.Drawing.Point(7, 50);
+            this.labelY.Name = "labelY";
+            this.labelY.Size = new System.Drawing.Size(15, 13);
+            this.labelY.TabIndex = 1;
+            this.labelY.Text = "y:";
+            // 
+            // labelX
+            // 
+            this.labelX.AutoSize = true;
+            this.labelX.Location = new System.Drawing.Point(7, 20);
+            this.labelX.Name = "labelX";
+            this.labelX.Size = new System.Drawing.Size(15, 13);
+            this.labelX.TabIndex = 0;
+            this.labelX.Text = "x:";
+            // 
+            // ReadFile
+            // 
+            this.ReadFile.Location = new System.Drawing.Point(208, 210);
+            this.ReadFile.Name = "ReadFile";
+            this.ReadFile.Size = new System.Drawing.Size(113, 23);
+            this.ReadFile.TabIndex = 24;
+            this.ReadFile.Text = "Read from file";
+            this.ReadFile.UseVisualStyleBackColor = true;
+            this.ReadFile.Click += new System.EventHandler(this.ReadFile_Click);
+            // 
+            // OutputFile
+            // 
+            this.OutputFile.Location = new System.Drawing.Point(208, 239);
+            this.OutputFile.Name = "OutputFile";
+            this.OutputFile.Size = new System.Drawing.Size(113, 23);
+            this.OutputFile.TabIndex = 25;
+            this.OutputFile.Text = "Write in file";
+            this.OutputFile.UseVisualStyleBackColor = true;
+            this.OutputFile.Click += new System.EventHandler(this.OutputFile_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 277);
+            this.Controls.Add(this.OutputFile);
+            this.Controls.Add(this.ReadFile);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.InputBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox2.ResumeLayout(false);
@@ -561,8 +563,6 @@
         private System.Windows.Forms.Button OpenPBtn;
         private System.Windows.Forms.Button ClosedPButton;
         private System.Windows.Forms.Button DelAllBtn;
-        private System.Windows.Forms.Button FacBtn;
-        private System.Windows.Forms.Button SignBtn;
         private System.Windows.Forms.Button SinBtn;
         private System.Windows.Forms.Button CosBtn;
         private System.Windows.Forms.Button TanBtn;
@@ -581,6 +581,8 @@
         private System.Windows.Forms.TextBox yValue;
         private System.Windows.Forms.TextBox xValue;
         private System.Windows.Forms.Button LastRes;
+        private System.Windows.Forms.Button ReadFile;
+        private System.Windows.Forms.Button OutputFile;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Calculator
 
         double lastResoult = 0;
         char[] variablesNames = { 'x', 'y', 'z', 'w', 'v' };
+        char[] listOfOperators = { '*', '+', '-', '/', '^', '!' };
 
         Dictionary<char, double> variableValues; 
         
@@ -167,7 +169,7 @@ namespace Calculator
                 return;
             }
 
-            if(Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || this.variablesNames.Contains(e.KeyChar))
+            if(Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == '\b' || e.KeyChar == '^' || this.variablesNames.Contains(e.KeyChar))
             {
                 this.inputedValueValidate(e.KeyChar.ToString());
             }
@@ -190,6 +192,10 @@ namespace Calculator
                 INode root = Parser.ParseString(res);
                 this.lastResoult = root.GetResult();
                 this.InputBox.Text = this.lastResoult.ToString();
+            }
+            else if(e.KeyCode == Keys.OemBackslash || e.KeyCode == Keys.Delete)
+            {
+                //InputBox.Text = 
             }
         }
 
@@ -270,6 +276,65 @@ namespace Calculator
         private void LastRes_Click(object sender, EventArgs e)
         {
             this.InputBox.Text = this.lastResoult.ToString();
+        }
+
+        private void InputBox_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if( Char.IsDigit(e.KeyChar) || this.listOfOperators.Contains(e.KeyChar) || this.variablesNames.Contains(e.KeyChar) || e.KeyChar == ')' || e.KeyChar == '(')
+            {
+                e.Handled = true;
+                this.InputBox.Text += e.KeyChar;
+            }
+            else if( (e.KeyChar == '\n' || e.KeyChar == '\r') && this.InputBox.Text.Length > 0)
+            {
+                string t = this.checkForVariables();
+                INode n = Parser.ParseString(t);
+                this.lastResoult = n.GetResult();
+                this.InputBox.Text = this.lastResoult.ToString();
+            }
+            else if (e.KeyChar  == '\b' && this.InputBox.Text.Length > 0)
+            {
+               this.InputBox.Text = this.InputBox.Text.Remove(this.InputBox.Text.Length-1,1);
+            }
+            
+
+            e.Handled = true;
+        }
+
+        private void ReadFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    this.InputBox.Text = File.ReadAllText(file);
+                    //size = text.Length;
+                }
+                catch (IOException)
+                {
+                }
+            }
+        }
+
+        private void OutputFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    File.WriteAllText(file, this.InputBox.Text);
+                    //size = text.Length;
+                }
+                catch (IOException)
+                {
+                }
+            }
         }
     }
 }
