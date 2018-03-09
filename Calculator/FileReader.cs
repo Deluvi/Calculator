@@ -9,6 +9,8 @@ namespace Calculator
 {
     public class FileReader
     {
+
+        //this function will ask you for the path
         public string Read()
         {
             Console.Write("Enter a valid path: ");
@@ -25,6 +27,7 @@ namespace Calculator
             return line;
         }
 
+        // you have to write the path in the function call
         public string Read(string inputfile)
         {
             //open input for reading
@@ -38,6 +41,7 @@ namespace Calculator
             return line;
         }
 
+        //This function asks for the path and the string to override in the file
         public int Save(string outputfile, string outputText)
         {
             //Create writer 
