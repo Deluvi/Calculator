@@ -105,7 +105,12 @@ namespace UnitTestCalculator
             parseString = "(1+2)^2";
 
             res = Parser.ParseString(parseString).GetResult();
-            Assert.AreEqual(5, res, 0.001, "Power does not work.");
+            Assert.AreEqual(9, res, 0.001, "Power does not work.");
+
+            parseString = "1+2^6*2";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(129, res, 0.001, "Power does not work.");
         }
     }
 }

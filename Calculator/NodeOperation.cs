@@ -11,7 +11,8 @@ namespace Calculator
         ADDITION,
         SUBSTRACTION,
         MULTIPLICATION,
-        DIVISION
+        DIVISION,
+        POWER
     }
     public class NodeOperation : INode
     {
@@ -43,6 +44,10 @@ namespace Calculator
             else if (Operation == OperationType.DIVISION)
             {
                 return LeftOperand.GetResult() / RightOperand.GetResult();
+            }
+            else if (Operation == OperationType.POWER)
+            {
+                return Math.Pow(LeftOperand.GetResult(),RightOperand.GetResult());
             }
             else throw new NotImplementedException();
         }

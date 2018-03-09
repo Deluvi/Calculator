@@ -9,9 +9,10 @@ namespace Calculator
     public class Parser
     {
         //List of Operations and Functions
-        public static string[] ListOperations = new string[] { "+", "-", "*", "/" };
+        public static string[] ListOperations = new string[] { "+", "-", "*", "/", "^" };
         public static string[] ListFunctions = new string[] { "sin", "cos","hyp","cot" };
-        public static string[] ListPrioritizedOperations = new string[] { "+", "-" }; 
+        public static string[] ListPrioritizedOperations = new string[] { "+", "-" };
+        public static string[] ListLowerOperations = new string[] { "^" };
         public static string[] Parantheses = new string[] { "(", ")" };
 
         public static String ParanthesisProcessor(String str)
@@ -88,7 +89,7 @@ namespace Calculator
 
             catch (FormatException) { }
 
-            string operation = "";
+            string operation = "^";
             int rank = str.Length;
             foreach (String operationStr in ListOperations) {
                 int newTestRank = str.IndexOf(operationStr);
@@ -99,9 +100,10 @@ namespace Calculator
                         newTestRank = str.IndexOf(operationStr, newTestRank + 1);
                     }
                 }
-                if (newTestRank != -1 && 
-                    ((ListPrioritizedOperations.Contains(operationStr) && ! ListPrioritizedOperations.Contains(operation)) // If the new is prioritized and the old not
-                    || ((ListPrioritizedOperations.Contains(operationStr) == ListPrioritizedOperations.Contains(operation)) && newTestRank < rank)))
+                if (newTestRank != -1 &&
+                    ((ListPrioritizedOperations.Contains(operationStr) && !ListPrioritizedOperations.Contains(operation)) // If the new is prioritized and the old not
+                    || ((ListLowerOperations.Contains(operation) && ! ListLowerOperations.Contains(operationStr)))
+                    || ((ListPrioritizedOperations.Contains(operationStr) == ListPrioritizedOperations.Contains(operation) && ListLowerOperations.Contains(operationStr) == ListLowerOperations.Contains(operation)) && newTestRank < rank))) // If both or neither a prioritized, take better rank
                 {
                     rank = newTestRank;
                     operation = operationStr;
@@ -125,6 +127,10 @@ namespace Calculator
             else if (operation == "/")
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.DIVISION);
+            }
+            else if (operation == "^")
+            {
+                return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.POWER);
             }
             //Functions implementation SIN
             else if (str.Trim().StartsWith("sin(")&&str.Trim().EndsWith(")"))
