@@ -111,7 +111,11 @@ namespace Calculator
             }
 
             string operand1 = str.Substring(0, rank);
-            string operand2 = str.Substring(rank + operation.Length);
+            string operand2 = "";
+            if (rank != str.Length)
+            {
+                operand2 = str.Substring(rank + operation.Length);
+            }
             if (operation == "+")
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.ADDITION);
@@ -128,7 +132,7 @@ namespace Calculator
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.DIVISION);
             }
-            else if (operation == "^")
+            else if (operation == "^" && rank != str.Length)
             {
                 return new NodeOperation(ParseString(operand1), ParseString(operand2), OperationType.POWER);
             }

@@ -1,29 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Calculator
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
-            while(true)
-            {
-                Console.Write("Write your expression: ");
-                String input = Console.ReadLine();
-                try
-                {
-                    INode tree = Parser.ParseString(input);
-                    Console.WriteLine("Result: " + tree.GetResult());
-                }
-                catch (Exception e) {
-                    Console.WriteLine("Input invalid!");
-                    Console.WriteLine(e.Message);
-                }
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
         }
     }
 }
