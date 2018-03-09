@@ -94,5 +94,18 @@ namespace UnitTestCalculator
             res = Parser.ParseString(parseString).GetResult();
             Assert.AreEqual(30, res, 0.001, "Parantheses does not work.");
         }
+        [TestMethod]
+        public void TestPower()
+        {
+            String parseString = "5^2";
+
+            double res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(25, res, 0.001, "Power does not work.");
+
+            parseString = "(1+2)^2";
+
+            res = Parser.ParseString(parseString).GetResult();
+            Assert.AreEqual(5, res, 0.001, "Power does not work.");
+        }
     }
 }
